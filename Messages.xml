@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" verbose="5">
+	<test name="Test">
+		<parameter name="patientUrl" value="http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php" />
+		<parameter name = "reason" value="Head Ache"/>
+  		<parameter name = "subject" value="Having headache for long time"/>
+  		<parameter name = "adminUrl" value="http://96.84.175.78/MMP-Release2-Admin-Build.2.1.000/login.php"/>
+  		<parameter name = "uName" value="ria1"/>
+  		<parameter name = "pwd" value="Ria12345"/>
+  		<parameter name = "uNameAdmin" value="Thomas_444"/>
+  		<parameter name = "pwdAdmin" value="Edison_444"/>
+		<classes>
+			<class name="org.iit.mmp.tests.MessagesTests"/>
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
