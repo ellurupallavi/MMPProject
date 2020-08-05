@@ -4,7 +4,7 @@
   <parameter name = "url" value="http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php"/>
   <parameter name = "uname" value="ria1"/>
   <parameter name = "pword" value="Ria12345"/>
-  <parameter name = "expText" value="MMPVeere"/>
+  <parameter name = "expText" value="MMP"/>
   <test thread-count="5" verbose="2" name="test1">
     <classes>
       <class name="org.iit.mmp.tests.ViewInformationTests"/>
