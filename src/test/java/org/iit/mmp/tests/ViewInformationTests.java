@@ -6,6 +6,7 @@ import org.iit.util.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class ViewInformationTests extends TestBase {
 
@@ -33,32 +34,36 @@ public class ViewInformationTests extends TestBase {
 			helper.login(uname, pword);
 			helper.navigateToAModule("Information");
 			viewInfoPageObj = new ViewInformationPage(driver);
+			
+			SoftAssert sAssert = new SoftAssert();
 
 			log.info("Checking Information Link");
 			boolean rflag = viewInfoPageObj.informationLink();
-			Assert.assertTrue(rflag, "Link not Found");
+			sAssert.assertTrue(rflag, "Link not Found");
 
 			log.info("Checking Information Text");
 			rflag = viewInfoPageObj.informationText();
-			Assert.assertTrue(rflag, "Text Not Displayed");
+			sAssert.assertTrue(rflag, "Text Not Displayed");
 
 			log.info("Looking for Username Display");
 			rflag = viewInfoPageObj.usernameDisplay();
-			Assert.assertTrue(rflag, "Username Not Displayed");
+			sAssert.assertTrue(rflag, "Username Not Displayed");
 
 			log.info("Comparing the Pagetext with expected Text");
 			rflag = viewInfoPageObj.viewInfoPageText(expFullText);
-			Assert.assertTrue(rflag, "Expected text not matched with Actual Text");
+			sAssert.assertTrue(rflag, "Expected text not matched with Actual Text");
 
 			log.info("Looking for Actual Username Matched with Expected Username");
 			rflag = viewInfoPageObj.isUserCorrect(uname);
-			Assert.assertTrue(rflag, "Actual UserName is not matching with Expexted");
+			sAssert.assertTrue(rflag, "Actual UserName is not matching with Expexted");
 
 			log.info("Looking in the Pagetext for expected Text Display");
 			rflag = viewInfoPageObj.pageContains(expText);
 			log.info(rflag ? "PASS" : "FAIL");
 
-			Assert.assertTrue(rflag, "Expected Text not displayed");
+			sAssert.assertTrue(rflag, "Expected Text not displayed");
+			
+			sAssert.assertAll();
 		} catch (Exception e) {
 			log.severe(e.toString());
 		}

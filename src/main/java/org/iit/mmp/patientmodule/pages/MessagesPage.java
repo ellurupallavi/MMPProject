@@ -28,31 +28,35 @@ public class MessagesPage {
 	}
 	
 	public boolean sendingMessages(String symp,String subject) {
-		
+		boolean results = false;
 		driver.findElement(contactTextBox).sendKeys(symp);
 		driver.findElement(subjTextBox).sendKeys(subject);
 		driver.findElement(sendBtn).click();
-		return true;
+		results = true;
+		return results;
 	}
 	public boolean readSuccessMsg()
 	{
+		boolean results = false;
 		Alert alrt = driver.switchTo().alert();
 		String actual = alrt.getText();
 		System.out.println(actual);
 		alrt.accept();
-		return true;
+		results = true;
+		return results;
 
 	}
 	public boolean checkMessagesinAdminModule(String reason, String subject, String date){
-		
+		boolean results = false;
 		driver.findElement(reasonText).getText();
 		driver.findElement(subjectText).getText();
 		
 		if(reason.equalsIgnoreCase(driver.findElement(reasonText).getText()) &&
 				subject.equalsIgnoreCase(driver.findElement(subjectText).getText())) {
-			return true;
+			results = true;
+			return results;
 		}else {
-			return false;
+			return results;
 		}
 		
 		

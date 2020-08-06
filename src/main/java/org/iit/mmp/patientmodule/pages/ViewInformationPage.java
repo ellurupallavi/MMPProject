@@ -24,50 +24,60 @@ public class ViewInformationPage {
 	By pageText = By.xpath("//div[@class='panel-title']");
 
 	public boolean informationLink() {
+		boolean results = false;
 		driver.findElement(viewInformationLink).click();
-		return true;
+		results = true;
+		return results;
 	}
 
 	public boolean informationText() throws Exception {
+		boolean results = false;
 		if (driver.findElement(informationText).isDisplayed()) {
 			System.out.println("Information Text Displayed");
-			return true;
+			results = true;
+			return results;
 		}
-		return false;
+		return results;
 	}
 
 	public boolean usernameDisplay() {
+		boolean results = false;
 
 		if (driver.findElement(userDisplay).isDisplayed()) {
 			System.out.println("Username  Text Displayed");
-			return true;
+			results = true;
+			return results;
 		}
-		return false;
+		return results;
 	}
 
 	public boolean pageContains(String expText) {
+		boolean results = false;
 		String actText = driver.findElement(pageText).getText();
 		if (actText.contains(expText)) {
 			// System.out.println(actText);
-			return true;
+			results = true;
+			return results;
 
 		} else {
-			return false;
+			return results;
 		}
 
 	}
 
 	public boolean isUserCorrect(String expUsername) {
+		boolean results = false;
 
 		if (driver.findElement(userDisplay).getText().equalsIgnoreCase(expUsername)) {
 			System.out.println("Username  Matched");
-			return true;
+			results = true;
+			return results;
 		}
-		return false;
+		return results;
 	}
 
 	public boolean viewInfoPageText(String expFullText) {
-		boolean results = true;
+		boolean results = false;
 		String actText = driver.findElement(pageText).getText();
 		String[] textList = actText.split("\n");
 		System.out.println(textList.length);

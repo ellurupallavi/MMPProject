@@ -6,6 +6,7 @@ import org.iit.util.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class MessagesTests extends TestBase{
 
@@ -22,14 +23,15 @@ public class MessagesTests extends TestBase{
 		helperObj.login(uName,pwd);
 		helperObj.navigateToAModule("Messages");
 		messagesPageObj = new MessagesPage(driver);
+		SoftAssert sAssert = new SoftAssert();
 		
 		log.info("Entering into sendingMessages");
 		rflag = messagesPageObj.sendingMessages(reason, subject);
-		Assert.assertTrue(rflag, "Unable To Send Messages");
+		sAssert.assertTrue(rflag, "Unable To Send Messages");
 		
 		log.info("Clicking On Alert Messages");
 		rflag = messagesPageObj.readSuccessMsg();
-		Assert.assertTrue(rflag, "Unable To Switch From Alert Window");
+		sAssert.assertTrue(rflag, "Unable To Switch From Alert Window");
 		
 		helperObj.launchWebPage(adminUrl);
 		helperObj.adminLogin(uNameAdmin, pwdAdmin);
@@ -37,9 +39,9 @@ public class MessagesTests extends TestBase{
 		
 		log.info("Validating send message in admin module");
 		rflag = messagesPageObj.checkMessagesinAdminModule(reason, subject, "");
-		Assert.assertTrue(rflag, "Send message is not matching");
+		sAssert.assertTrue(rflag, "Send message is not matching");
 		
-		
+		sAssert.assertAll();
 		
 	}
 
