@@ -1,6 +1,6 @@
-Aug 04, 2020 5:57:53 PM org.iit.mmp.tests.MessagesTests validateMessages
+Aug 08, 2020 1:36:33 PM org.iit.mmp.tests.MessagesTests validateMessages
 INFO: Entering into sendingMessages
-Aug 04, 2020 5:57:53 PM org.iit.mmp.tests.MessagesTests validateMessages
+Aug 08, 2020 1:36:33 PM org.iit.mmp.tests.MessagesTests validateMessages
 INFO: Clicking On Alert Messages
-Aug 04, 2020 5:58:02 PM org.iit.mmp.tests.MessagesTests validateMessages
+Aug 08, 2020 1:36:41 PM org.iit.mmp.tests.MessagesTests validateMessages
 INFO: Validating send message in admin module

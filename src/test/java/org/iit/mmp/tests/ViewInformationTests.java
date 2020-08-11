@@ -1,5 +1,8 @@
 package org.iit.mmp.tests;
 
+import java.io.FileInputStream;
+import java.util.Properties;
+
 import org.iit.mmp.helper.HelperClass;
 import org.iit.mmp.patientmodule.pages.ViewInformationPage;
 import org.iit.util.TestBase;
@@ -11,16 +14,17 @@ import org.testng.asserts.SoftAssert;
 public class ViewInformationTests extends TestBase {
 
 	HelperClass helper;
+	
 
-	String expFullText = "Manage My Patient (MMP) is a medical practice management solution that"
-			+ " boosts productivity by automating the day-to-day tasks that can slow an office "
-			+ "manager down. Central delivers much more than medical billing software. Sure, "
-			+ "it has the tools to help generate cleaner claims and reduce denials, but our "
-			+ "easy-to-use practice management software also streamlines your workflow to deliver "
-			+ "seamless handoffs across departments. "
-			+ "Manage My Patient (MMP) becomes your practice’s command center, delivering robust, "
-			+ "real-time analytics through customizable reports and dashboards to ensure you know "
-			+ "how your business is performing on the metrics that matter most.";
+//	String expFullText = "Manage My Patient (MMP) is a medical practice management solution that"
+//			+ " boosts productivity by automating the day-to-day tasks that can slow an office "
+//			+ "manager down. Central delivers much more than medical billing software. Sure, "
+//			+ "it has the tools to help generate cleaner claims and reduce denials, but our "
+//			+ "easy-to-use practice management software also streamlines your workflow to deliver "
+//			+ "seamless handoffs across departments. "
+//			+ "Manage My Patient (MMP) becomes your practice’s command center, delivering robust, "
+//			+ "real-time analytics through customizable reports and dashboards to ensure you know "
+//			+ "how your business is performing on the metrics that matter most.";
 
 	ViewInformationPage viewInfoPageObj;
 
@@ -29,6 +33,12 @@ public class ViewInformationTests extends TestBase {
 			"US_004" })
 	public void viewInformation(String url, String uname, String pword, String expText) {
 		try {
+			FileInputStream input = new FileInputStream("/Users/pesalvk/eclipse-workspace/mmp/testcaseinfo.properties");
+			Properties prop = new Properties();
+			prop.load(input);
+			String expFullText = prop.getProperty("expFullText");
+			
+			expFullText = expFullText.replaceAll("\"", "");
 			helper = new HelperClass(driver);
 			helper.launchWebPage(url);
 			helper.login(uname, pword);
@@ -64,6 +74,8 @@ public class ViewInformationTests extends TestBase {
 			sAssert.assertTrue(rflag, "Expected Text not displayed");
 			
 			sAssert.assertAll();
+			
+			input.close();
 		} catch (Exception e) {
 			log.severe(e.toString());
 		}

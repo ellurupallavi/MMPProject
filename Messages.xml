@@ -10,6 +10,7 @@
   		<parameter name = "pwd" value="Ria12345"/>
   		<parameter name = "uNameAdmin" value="Thomas_444"/>
   		<parameter name = "pwdAdmin" value="Edison_444"/>
+  		<parameter name = "successMsg" value="Messages Successfully sent."/>
 		<classes>
 			<class name="org.iit.mmp.tests.MessagesTests"/>
 		</classes>

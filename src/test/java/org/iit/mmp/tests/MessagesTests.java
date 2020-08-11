@@ -2,6 +2,7 @@ package org.iit.mmp.tests;
 
 import org.iit.mmp.helper.HelperClass;
 import org.iit.mmp.patientmodule.pages.MessagesPage;
+import org.iit.util.AppLibrary;
 import org.iit.util.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
@@ -13,10 +14,10 @@ public class MessagesTests extends TestBase{
 	MessagesPage messagesPageObj;
 	HelperClass helperObj;
 
-	@Parameters({"patientUrl","reason","subject","adminUrl","uName","pwd","uNameAdmin","pwdAdmin"})
+	@Parameters({"patientUrl","reason","subject","adminUrl","uName","pwd","uNameAdmin","pwdAdmin","successMsg"})
 	@Test(description="US_005, View Information",groups={"sanity","regression","UI","patientmodule","US_004"})
 	public void validateMessages(String patientUrl,String reason,String subject,
-			String adminUrl,String uName,String pwd, String uNameAdmin,String pwdAdmin) {
+			String adminUrl,String uName,String pwd, String uNameAdmin,String pwdAdmin, String successMsg) {
 		boolean rflag = false;
 		helperObj = new HelperClass(driver);
 		helperObj.launchWebPage(patientUrl);
@@ -26,11 +27,15 @@ public class MessagesTests extends TestBase{
 		SoftAssert sAssert = new SoftAssert();
 		
 		log.info("Entering into sendingMessages");
+		reason = AppLibrary.getRandomChars(10);
+		subject = AppLibrary.getRandomChars(20);
+		reason = "Fever due to "+reason;
+		subject = "Hi Dr. "+ subject;
 		rflag = messagesPageObj.sendingMessages(reason, subject);
 		sAssert.assertTrue(rflag, "Unable To Send Messages");
 		
 		log.info("Clicking On Alert Messages");
-		rflag = messagesPageObj.readSuccessMsg();
+		rflag = messagesPageObj.readSuccessMsg(successMsg);
 		sAssert.assertTrue(rflag, "Unable To Switch From Alert Window");
 		
 		helperObj.launchWebPage(adminUrl);
