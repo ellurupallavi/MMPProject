@@ -16,12 +16,8 @@ public class MessagesPage {
 	By sendBtn = By.xpath("//input[@value='Send']");
 	By logoutTab = By.xpath("//span[contains(text(),'Logout')]");
 
-	// String xPathReason = "//b[normalize-space(text())='DYNAMICTEXT']";
-	// String xPathSubject = "//td[normalize-space(text())='DYNAMICTEXT']";
-
 	By reasonPath = By.xpath("//table[@class='table']/tbody/tr/td[2]");
-	// By subjectPath = By.xpath("//table[@class='table']/thead/tr/td[1]");
-
+	
 	public MessagesPage(WebDriver driver) {
 		this.driver = driver;
 
@@ -49,26 +45,24 @@ public class MessagesPage {
 		return results;
 
 	}
+	/*
+	 * Checking for the message sent to Doctor is displaying correctly
+	 * Passing the values of expected Reason and Subject
+	 * Fetching list of Subject and Reason values from the display list using reason webElement
+	 * reason webElement contains both Reason and Messages(Subject)
+	 * Looping through list to find the matching Reason and Subject by comparing with 
+	 * passed expected parameter values
+	 * */
 
 	public boolean checkMessagesinAdminModule(String exptReason, String exptSubject, String date) {
 		System.out.println("reason " + exptReason);
 		System.out.println("subject " + exptSubject);
-		// By reasonText = By.xpath(xPathReason.replaceAll("DYNAMICTEXT", exptReason));
-		// By subjectText = By.xpath(xPathSubject.replaceAll("DYNAMICTEXT",
-		// exptSubject));
+		
 		boolean results = false;
 
 		List<WebElement> reasonList = driver.findElements(reasonPath);
-		// List<WebElement> subjectList = driver.findElements(subjectPath);
-
-//		if (driver.findElement(reasonText).isDisplayed() && driver.findElement(subjectText).isDisplayed()) {
-//			results = true;
-//			// return results;
-//		} else {
-//			// return results;
-//		}
+		
 		System.out.println("Size of Reason List is :- " + reasonList.size());
-//		System.out.println("Size of Subject List is :- " + subjectList.size());
 
 		for (int i = 1; i < reasonList.size(); i = i + 2) {
 			System.out.println("Each Line ::" + reasonList.get(i).getText().trim() + " ,"
